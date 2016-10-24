@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.company</groupId>
+    <artifactId>speedment-demo</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+ 
+    <name>speedment-demo</name>
+    <url>http://www.myorganization.org</url>
+
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.4.0.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <speedment.version>3.0.1</speedment.version>
+        <mysql.version>5.1.38</mysql.version>
+        <java.version>1.8</java.version>
+    </properties>
+    
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.speedment</groupId>
+                <artifactId>speedment-maven-plugin</artifactId>
+                <version>${speedment.version}</version>
+                <configuration>
+                    <components>
+                        <component>com.speedment.plugins.spring.SpringGeneratorBundle</component>
+                    </components>
+                </configuration>
+                <dependencies>
+                    <!--
+                    MySQL Connector:5.1.38
+                    General Public License (GPL) 2.0 with FOSS exception
+                    http://www.gnu.org/licenses/gpl-2.0.html
+                    https://www.mysql.com/about/legal/licensing/foss-exception/
+                    2015-06-02
+                    emifor
+                    -->
+                    <dependency>
+                        <groupId>mysql</groupId>
+                        <artifactId>mysql-connector-java</artifactId>
+                        <version>${mysql.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>com.speedment.plugins</groupId>
+                        <artifactId>spring-generator</artifactId>
+                        <version>${speedment.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.5.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <mainClass>com.company.DemoApplication</mainClass>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+ 
+    <dependencies>
+        <!-- LICENSE INFORMATION
+        speedment:3.0.1-SNAPSHOT
+        Apache 2 License
+        http://www.apache.org/licenses/LICENSE-2.0.txt
+        2016-01-21
+        emifor
+        -->
+        <dependency>
+            <groupId>com.speedment</groupId>
+            <artifactId>runtime</artifactId>
+            <version>${speedment.version}</version>
+            <type>pom</type>
+        </dependency>
+        
+        <!--
+        MySQL Connector:5.1.38
+        General Public License (GPL) 2.0 with FOSS exception
+        http://www.gnu.org/licenses/gpl-2.0.html
+        https://www.mysql.com/about/legal/licensing/foss-exception/
+        2015-06-02
+        emifor
+        -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.vaadin</groupId>
+            <artifactId>viritin</artifactId>
+            <version>1.57</version>
+        </dependency>
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-spring-boot-starter</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.speedment.plugins</groupId>
+            <artifactId>spring-generator</artifactId>
+            <version>${speedment.version}</version>
+        </dependency>
+    </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.vaadin</groupId>
+                <artifactId>vaadin-bom</artifactId>
+                <version>7.6.3</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <repositories>
+        <repository>
+            <id>vaadin-addons</id>
+            <url>http://maven.vaadin.com/vaadin-addons</url>
+        </repository>
+        <repository>
+            <id>spring-releases</id>
+            <url>https://repo.spring.io/libs-release</url>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>spring-releases</id>
+            <url>https://repo.spring.io/libs-release</url>
+        </pluginRepository>
+    </pluginRepositories>
+</project>

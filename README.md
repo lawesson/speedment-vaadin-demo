@@ -10,7 +10,7 @@ See
 
 To run the demo, perform the following steps.
 
-* Create a MySQL database names hares with the following table.
+* Create a MySQL database with name *hares* with the following table and some test data:
 
    ```sql
     CREATE TABLE `hare` (
@@ -20,6 +20,11 @@ To run the demo, perform the following steps.
       `age` int(11) NOT NULL,
       PRIMARY KEY (`id`)
     );
+    
+    INSERT INTO hare (name, color, age) VALUES ("Hansel", "Gray", 3);
+    INSERT INTO hare (name, color, age) VALUES ("Henrietta", "White", 2);
+    INSERT INTO hare (name, color, age) VALUES ("Henry", "Black", 9);
+    INSERT INTO hare (name, color, age) VALUES ("Harry", "Gray", 400);
    ```
 
 * With MySQL running, start the Speedment code generator tool
@@ -28,7 +33,7 @@ To run the demo, perform the following steps.
     mvn speedment:tool
    ```
 
-* Enter database credentials in the UI
+* Enter database credentials in the UI, fill in the schema *hares*
 
 * Generate code by clicking the "Generate" button without changing any defaults
 
